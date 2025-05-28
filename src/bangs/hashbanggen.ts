@@ -22,13 +22,13 @@ const hashbang: {
 		t: "p",
 		u: "https://perplexica.home.ecorp.dev/?q={{{s}}}",
 	},
-	e: {
+	se: {
 		c: "Online Services",
 		d: "https://search.ecorp.dev",
 		r: 0,
 		s: "SearXNG",
 		sc: "Search",
-		t: "e",
+		t: "se",
 		u: "https://search.ecorp.dev/search?q={{{s}}}",
 	},
 	ai: {
