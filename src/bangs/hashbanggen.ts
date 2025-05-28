@@ -13,32 +13,32 @@ const hashbang: {
 		u: string;
 	};
 } = {
-	t3: {
+	p: {
 		c: "AI",
-		d: "www.t3.chat",
+		d: "https://perplexica.home.ecorp.dev",
 		r: 0,
-		s: "T3 Chat",
+		s: "Perplexica",
 		sc: "AI",
-		t: "t3",
-		u: "https://www.t3.chat/new?q={{{s}}}",
+		t: "p",
+		u: "https://perplexica.home.ecorp.dev/?q={{{s}}}",
 	},
-	m2: {
+	e: {
 		c: "Online Services",
-		d: "meta.dunkirk.sh",
+		d: "https://search.ecorp.dev",
 		r: 0,
-		s: "metasearch2",
+		s: "SearXNG",
 		sc: "Search",
-		t: "m2",
-		u: "https://meta.dunkirk.sh/search?q={{{s}}}",
+		t: "e",
+		u: "https://search.ecorp.dev/search?q={{{s}}}",
 	},
-	tiktok: {
-		c: "Multimedia",
-		sc: "Video",
-		d: "www.tiktok.com",
+	ai: {
+		c: "Online Services",
+		d: "https://ai.ecorp.dev",
 		r: 0,
-		s: "TikTok",
-		t: "tiktok",
-		u: "https://www.tiktok.com/search?q={{{s}}}",
+		s: "Open WebUI",
+		sc: "Search",
+		t: "ai",
+		u: "https://ai.ecorp.dev/?q={{{s}}}",
 	},
 };
 for (const bang of rawBangs) hashbang[bang.t] = bang;
