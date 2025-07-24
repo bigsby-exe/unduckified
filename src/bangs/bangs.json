@@ -8176,7 +8176,7 @@
     "s": "British Board of Film Classification",
     "d": "www.bbfc.co.uk",
     "t": "bbfc",
-    "u": "https://www.bbfc.co.uk/search/releases/{{{s}}}",
+    "u": "https://www.bbfc.co.uk/search?q={{{s}}}",
     "c": "Entertainment",
     "sc": "Movies"
   },
@@ -28633,7 +28633,7 @@
     "s": "Examine",
     "d": "examine.com",
     "t": "examine",
-    "u": "https://examine.com/search.php?q={{{s}}}",
+    "u": "https://examine.com/search/?q={{{s}}}",
     "c": "Research",
     "sc": "Health"
   },
