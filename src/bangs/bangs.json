@@ -54637,7 +54637,7 @@
     "s": "namuwiki",
     "d": "namu.wiki",
     "t": "namu",
-    "u": "https://namu.wiki/Search?q={{{s}}}",
+    "u": "https://namu.wiki/Go?q={{{s}}}",
     "c": "Research",
     "sc": "Reference"
   },
@@ -61759,13 +61759,13 @@
   },
   {
     "s": "PHP.net",
-    "d": "secure.php.net",
+    "d": "www.php.net",
     "ad": "php.net",
     "t": "phpnet",
     "ts": [
       "php"
     ],
-    "u": "https://secure.php.net/manual-lookup.php?pattern={{{s}}}",
+    "u": "https://www.php.net/manual-lookup.php?pattern={{{s}}}",
     "c": "Tech",
     "sc": "Languages (php)"
   },
