@@ -3469,7 +3469,7 @@
     "ts": [
       "ao"
     ],
-    "u": "https://www.amazon.com/gp/your-account/order-history?opt=ab&search={{{s}}}",
+    "u": "https://www.amazon.com/your-orders/search?opt=ab&search={{{s}}}",
     "c": "Shopping",
     "sc": "Online"
   },
@@ -10502,6 +10502,14 @@
     "u": "/search?q={{{s}}}+site:formulae.brew.sh",
     "c": "Tech",
     "sc": "Downloads (software)"
+  },
+  {
+    "s": "Home Manager - Option Search",
+    "d": "home-manager-options.extranix.com",
+    "t": "hmo",
+    "u": "https://home-manager-options.extranix.com/?query={{{s}}}&release=master",
+    "c": "Tech",
+    "sc": "Sysadmin"
   },
   {
     "s": "B-Rhymes",
@@ -32967,6 +32975,18 @@
       "gmailh"
     ],
     "u": "https://mail.google.com/mail/u/0/#search/{{{s}}}",
+    "c": "Online Services",
+    "sc": "Google"
+  },
+  {
+    "s": "Gemini",
+    "d": "gemini.google.com",
+    "t": "gmai",
+    "ts": [
+      "geminiai",
+      "gemai"
+    ],
+    "u": "https://gemini.google.com/?prompt_text={{{s}}}",
     "c": "Online Services",
     "sc": "Google"
   },
@@ -86874,8 +86894,7 @@
     "d": "www.wordnik.com",
     "t": "wnk",
     "ts": [
-      "wordnik",
-      "word"
+      "wordnik"
     ],
     "u": "https://www.wordnik.com/words/?myWord={{{s}}}",
     "c": "Research",
@@ -93189,6 +93208,9 @@
     "s": "Kagi Translate (Dictionary)",
     "d": "translate.kagi.com",
     "t": "kdic",
+    "ts": [
+      "word"
+    ],
     "u": "https://translate.kagi.com/dictionary?word={{{s}}}&from=auto",
     "c": "Translation",
     "sc": "General"
