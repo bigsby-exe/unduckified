@@ -296,26 +296,10 @@
     "sc": "Online (marketplace)"
   },
   {
-    "s": "2gis.ru",
+    "s": "2GIS",
     "d": "2gis.ru",
     "t": "2gis",
-    "u": "https://2gis.ru/moscow/search/{{{s}}}",
-    "c": "Online Services",
-    "sc": "Maps"
-  },
-  {
-    "s": "2gis Санкт-Петербург",
-    "d": "2gis.ru",
-    "t": "2gissbp",
-    "u": "https://2gis.ru/spb/search/{{{s}}}",
-    "c": "Online Services",
-    "sc": "Maps"
-  },
-  {
-    "s": "2GIS Уфа",
-    "d": "2gis.ru",
-    "t": "2gisufa",
-    "u": "https://2gis.ru/ufa/search/{{{s}}}",
+    "u": "https://2gis.ru/search/{{{s}}}",
     "c": "Online Services",
     "sc": "Maps"
   },
@@ -6568,9 +6552,9 @@
     "s": "Avito",
     "d": "www.avito.ru",
     "t": "avito",
-    "u": "https://www.avito.ru/rossiya?q={{{s}}}",
+    "u": "https://www.avito.ru/?q={{{s}}}",
     "c": "Shopping",
-    "sc": "Online (deals)"
+    "sc": "Online (marketplace)"
   },
   {
     "s": "avtoprom.org",
@@ -32981,14 +32965,15 @@
   {
     "s": "Gemini",
     "d": "gemini.google.com",
-    "t": "gmai",
+    "t": "gemini",
     "ts": [
       "geminiai",
-      "gemai"
+      "gemai",
+      "gmai"
     ],
     "u": "https://gemini.google.com/?prompt_text={{{s}}}",
     "c": "Online Services",
-    "sc": "Google"
+    "sc": "AI Chatbots"
   },
   {
     "s": "GMail.com",
@@ -36750,6 +36735,14 @@
     "u": "https://grok.com/?q={{{s}}}",
     "c": "Online Services",
     "sc": "AI Chatbots"
+  },
+  {
+    "s": "Grokipedia",
+    "d": "grokipedia.com",
+    "t": "grokipedia",
+    "u": "https://grokipedia.com/search?q={{{s}}}",
+    "c": "Research",
+    "sc": "Reference"
   },
   {
     "s": "h2g2",
@@ -42016,15 +42009,15 @@
     "sc": "Blogs"
   },
   {
-    "s": "Yandex Images",
+    "s": "Yandex Images (en)",
     "d": "yandex.com",
-    "t": "iya",
+    "t": "ymg",
     "ts": [
-      "ymg"
+      "iya"
     ],
     "u": "https://yandex.com/images/search?text={{{s}}}",
-    "c": "Multimedia",
-    "sc": "Images"
+    "c": "Online Services",
+    "sc": "Search (non-US)"
   },
   {
     "s": "izneo",
@@ -54282,11 +54275,12 @@
     "sc": "Search"
   },
   {
-    "s": "market.yandex.ru",
+    "s": "Yandex Market",
     "d": "market.yandex.ru",
     "t": "mya",
     "ts": [
-      "yama"
+      "yama",
+      "yandexm"
     ],
     "u": "https://market.yandex.ru/search?text={{{s}}}",
     "c": "Shopping",
@@ -60000,10 +59994,10 @@
     "sc": "Blogs"
   },
   {
-    "s": "OZON.ru",
+    "s": "OZON",
     "d": "www.ozon.ru",
     "t": "ozon",
-    "u": "http://www.ozon.ru/?context=search&text={{{s}}}",
+    "u": "https://www.ozon.ru/search/?text={{{s}}}",
     "c": "Shopping",
     "sc": "Online"
   },
@@ -62076,14 +62070,6 @@
     "u": "https://pipl.com/search/?q={{{s}}}&l=&sloc=&in=5",
     "c": "Online Services",
     "sc": "Search"
-  },
-  {
-    "s": "pip",
-    "d": "pypi.python.org",
-    "t": "pip",
-    "u": "https://pypi.python.org/pypi?:action=search&term={{{s}}}&submit=search",
-    "c": "Tech",
-    "sc": "Languages (python)"
   },
   {
     "s": "Wiki der Piratenpartei Deutschland",
@@ -64852,11 +64838,12 @@
     "sc": "Design"
   },
   {
-    "s": "pypi.org",
+    "s": "PyPI",
     "d": "pypi.org",
-    "t": "pypa",
+    "t": "pypi",
     "ts": [
-      "pypi"
+      "pip",
+      "pypa"
     ],
     "u": "https://pypi.org/search/?q={{{s}}}",
     "c": "Tech",
@@ -72326,14 +72313,6 @@
     "u": "https://slovnik.seznam.cz/en/?q={{{s}}}",
     "c": "Research",
     "sc": "Learning"
-  },
-  {
-    "s": "Yandex.Slovari",
-    "d": "slovari.yandex.ru",
-    "t": "slov",
-    "u": "https://slovari.yandex.ru/search.xml?text={{{s}}}",
-    "c": "Research",
-    "sc": "Learning (intl)"
   },
   {
     "s": "Sololearn Discuss",
@@ -88787,23 +88766,16 @@
     "sc": "Online (marketplace)"
   },
   {
-    "s": "Yandex Dictionaries",
-    "d": "slovari.yandex.ru",
-    "t": "yad",
-    "u": "https://slovari.yandex.ru/{{{s}}}/",
-    "c": "Research",
-    "sc": "Reference (words intl)"
-  },
-  {
     "s": "Yandex (en)",
     "d": "yandex.com",
-    "t": "yaen",
+    "t": "yan",
     "ts": [
+      "yaen",
       "yandexen"
     ],
-    "u": "https://yandex.com/yandsearch?text={{{s}}}",
+    "u": "https://yandex.com/search?text={{{s}}}",
     "c": "Online Services",
-    "sc": "Search (non-US)"
+    "sc": "Search"
   },
   {
     "s": "Yahoo Finance Australia",
@@ -88841,11 +88813,12 @@
     "sc": "Video"
   },
   {
-    "s": "Yandex Music (ru)",
+    "s": "Yandex Music",
     "d": "music.yandex.ru",
     "t": "yamusic",
     "ts": [
-      "yamu"
+      "yamu",
+      "яму"
     ],
     "u": "https://music.yandex.ru/search?text={{{s}}}",
     "c": "Multimedia",
@@ -88861,38 +88834,16 @@
   },
   {
     "s": "Yandex Maps",
-    "d": "maps.yandex.ru",
+    "d": "yandex.ru",
     "t": "yandexmaps",
     "ts": [
-      "yxmaps"
+      "yamaps",
+      "yxmaps",
+      "якарты"
     ],
-    "u": "https://maps.yandex.ru/?text={{{s}}}",
+    "u": "https://yandex.ru/maps/?text={{{s}}}",
     "c": "Online Services",
     "sc": "Maps"
-  },
-  {
-    "s": "Yandex Market",
-    "d": "market.yandex.ru",
-    "t": "yandexm",
-    "u": "https://market.yandex.ru/search.xml?text={{{s}}}",
-    "c": "Online Services",
-    "sc": "Search (non-US)"
-  },
-  {
-    "s": "yandex.ru/pogoda/",
-    "d": "yandex.ru",
-    "t": "yandexw",
-    "u": "https://yandex.ru/pogoda/{{{s}}}",
-    "c": "News",
-    "sc": "Weather"
-  },
-  {
-    "s": "Yandex.Ru",
-    "d": "www.yandex.ru",
-    "t": "yandex",
-    "u": "https://www.yandex.ru/yandsearch?text={{{s}}}",
-    "c": "Online Services",
-    "sc": "Search (non-US)"
   },
   {
     "s": "Yahoo! Answers",
@@ -88901,14 +88852,6 @@
     "u": "http://answers.yahoo.com/search/search_result;_ylt=AnPnri0ekBBFsWt64sNbHmvj1KIX;_ylv=3?p={{{s}}}&submit-go=Search+Y!+Answers",
     "c": "Online Services",
     "sc": "Social"
-  },
-  {
-    "s": "yandex.com",
-    "d": "www.yandex.com",
-    "t": "yan",
-    "u": "https://www.yandex.com/?q={{{s}}}",
-    "c": "Online Services",
-    "sc": "Search (Private)"
   },
   {
     "s": "Yarn",
@@ -88920,17 +88863,6 @@
     "u": "https://yarnpkg.com/en/packages?q={{{s}}}",
     "c": "Tech",
     "sc": "Languages (javascript)"
-  },
-  {
-    "s": "Yandex Slovari",
-    "d": "slovari.yandex.ru",
-    "t": "yaslovari",
-    "ts": [
-      "ys"
-    ],
-    "u": "https://slovari.yandex.ru/{{{s}}}",
-    "c": "Online Services",
-    "sc": "Search"
   },
   {
     "s": "Yandex Turkey",
@@ -88949,7 +88881,7 @@
     "sc": "Video"
   },
   {
-    "s": "Yandex Translate",
+    "s": "Yandex Translate (en)",
     "d": "translate.yandex.com",
     "t": "yat",
     "ts": [
@@ -88957,7 +88889,7 @@
     ],
     "u": "https://translate.yandex.com/?text={{{s}}}",
     "c": "Online Services",
-    "sc": "Search"
+    "sc": "Tools"
   },
   {
     "s": "Yandex Video",
@@ -88968,18 +88900,14 @@
     "sc": "Search (non-US)"
   },
   {
-    "s": "Yandex Weather",
-    "d": "yandex.ru",
-    "t": "yaw",
-    "u": "https://yandex.ru/pogoda/search?request={{{s}}}",
-    "c": "News",
-    "sc": "Weather"
-  },
-  {
     "s": "Yandex",
     "d": "yandex.ru",
     "t": "ya",
-    "u": "https://yandex.ru/search/?text={{{s}}}",
+    "ts": [
+      "yandex",
+      "я"
+    ],
+    "u": "https://yandex.ru/search?text={{{s}}}",
     "c": "Online Services",
     "sc": "Search (non-US)"
   },
@@ -89701,9 +89629,15 @@
     "sc": "Programming"
   },
   {
-    "s": "Yandex.Translate",
+    "s": "Yandex Translate",
     "d": "translate.yandex.ru",
     "t": "ytr",
+    "ts": [
+      "ys",
+      "yad",
+      "slov",
+      "yaslovari"
+    ],
     "u": "https://translate.yandex.ru/?text={{{s}}}",
     "c": "Online Services",
     "sc": "Tools"
@@ -90471,17 +90405,6 @@
     "sc": "Docs"
   },
   {
-    "s": "Yandex.Maps (Карты)",
-    "d": "yandex.ru",
-    "t": "карты",
-    "ts": [
-      "ям"
-    ],
-    "u": "https://yandex.ru/maps/?text={{{s}}}",
-    "c": "Online Services",
-    "sc": "Maps"
-  },
-  {
     "s": "Лабиринт",
     "d": "www.labirint.ru",
     "t": "л",
@@ -90514,28 +90437,16 @@
     "sc": "Search (non-US)"
   },
   {
-    "s": "Yandex.ru",
+    "s": "Yandex Images",
     "d": "yandex.ru",
-    "t": "я",
-    "u": "https://yandex.ru/yandsearch?text={{{s}}}",
-    "c": "Online Services",
-    "sc": "Search (non-US)"
-  },
-  {
-    "s": "Yandex images (Яндекс картинки)",
-    "d": "yandex.ru",
-    "t": "як",
+    "t": "yai",
+    "ts": [
+      "yak",
+      "як"
+    ],
     "u": "https://yandex.ru/images/search?text={{{s}}}",
     "c": "Online Services",
-    "sc": "Search"
-  },
-  {
-    "s": "Yandex Music",
-    "d": "music.yandex.com",
-    "t": "яму",
-    "u": "https://music.yandex.com/search?text={{{s}}}",
-    "c": "Multimedia",
-    "sc": "Music"
+    "sc": "Search (non-US)"
   },
   {
     "s": "Nayiri",
