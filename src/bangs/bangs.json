@@ -58120,12 +58120,12 @@
     "sc": "Online (deals)"
   },
   {
-    "s": "Open Street Maps",
+    "s": "OpenStreetMap",
     "d": "www.openstreetmap.org",
-    "t": "omap",
+    "t": "osm",
     "ts": [
       "openmaps",
-      "osm",
+      "omap",
       "ost"
     ],
     "u": "https://www.openstreetmap.org/search?query={{{s}}}",
@@ -93110,5 +93110,14 @@
     "u": "https://libro.fm/search?utf8=%E2%9C%93&q={{{s}}}",
     "c": "Shopping",
     "sc": "Online"
+  },
+  {
+    "s": "ARC Raiders Wiki",
+    "d": "arcraiders.wiki",
+    "t": "arcwiki",
+    "ts": ["arcw"],
+    "u": "https://arcraiders.wiki/w/index.php?search={{{s}}}",
+    "c": "Entertainment",
+    "sc": "Games (specific)"
   }
 ]
