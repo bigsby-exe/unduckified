@@ -43460,12 +43460,16 @@
     "sc": "Newspaper"
   },
   {
-    "s": "kakaku.com",
-    "d": "kakaku.com",
+    "s": "Kakaku.com",
+    "d": "search.kakaku.com",
+    "ad": "kakaku.com",
     "t": "kakaku",
-    "u": "https://kakaku.com/search_results/{{{s}}}",
+    "u": "https://search.kakaku.com/{{{s}}}/",
     "c": "Shopping",
-    "sc": "Online"
+    "sc": "Online",
+    "fmt": [
+      "open_snap_domain"
+    ]
   },
   {
     "s": "Khan Academy",
@@ -56664,6 +56668,22 @@
     "sc": "Reference"
   },
   {
+    "s": "NPMX",
+    "d": "npmx.dev",
+    "t": "npmx",
+    "u": "https://npmx.dev/search?q={{{s}}}",
+    "c": "Tech",
+    "sc": "Programming"
+  },
+  {
+    "s": "Skills.sh",
+    "d": "skills.sh",
+    "t": "skills",
+    "u": "https://skills.sh/?q={{{s}}}",
+    "c": "Research",
+    "sc": "AI"
+  },
+  {
     "s": "NPO",
     "d": "www.npo.nl",
     "t": "npo",
@@ -58124,6 +58144,8 @@
     "d": "www.openstreetmap.org",
     "t": "osm",
     "ts": [
+      "openstreetmap",
+      "openstreet",
       "openmaps",
       "omap",
       "ost"
@@ -58710,17 +58732,6 @@
     "u": "https://cnx.org/search?q={{{s}}}",
     "c": "Research",
     "sc": "Learning"
-  },
-  {
-    "s": "OpenStreetMap",
-    "d": "www.openstreetmap.org",
-    "t": "openstreetmap",
-    "ts": [
-      "openstreet"
-    ],
-    "u": "https://www.openstreetmap.org/?query={{{s}}}",
-    "c": "Online Services",
-    "sc": "Maps"
   },
   {
     "s": "OpenStreetMap Wiki",
@@ -93096,7 +93107,9 @@
     "s": "ARC Raiders Wiki",
     "d": "arcraiders.wiki",
     "t": "arcwiki",
-    "ts": ["arcw"],
+    "ts": [
+      "arcw"
+    ],
     "u": "https://arcraiders.wiki/w/index.php?search={{{s}}}",
     "c": "Entertainment",
     "sc": "Games (specific)"
