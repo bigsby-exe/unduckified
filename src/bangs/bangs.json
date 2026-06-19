@@ -19290,6 +19290,14 @@
     ]
   },
   {
+  "s": "Deltarune Wiki",
+  "d": "deltarune.wiki",
+  "t": "deltarune",
+  "u": "https://deltarune.wiki/index.php?search={{{s}}}&title=Special:Search",
+  "c": "Entertainment",
+  "sc": "Games (specific)"
+},
+  {
     "s": "Dragen en Voeden Forum",
     "d": "forum.dragen-en-voeden.nl",
     "t": "denv",
@@ -64350,6 +64358,18 @@
     "sc": "Blogs"
   },
   {
+    "s": "Podcast Index",
+    "d": "podcastindex.org",
+    "t": "podindex",
+    "ts": [
+      "poddex",
+      "podcastindex"
+    ],
+    "u": "https://podcastindex.org/search?{{{s}}}&type=all",
+    "c": "Online Services",
+    "sc": "Search"
+  },
+  {
     "s": "PSDDude Photoshop Tutorials",
     "d": "www.psd-dude.com",
     "t": "psddude",
@@ -67906,7 +67926,7 @@
     "sc": "Music"
   },
   {
-    "s": "Roblox Experiences",
+    "s": "Roblox Games",
     "d": "www.roblox.com",
     "t": "robloxg",
     "ts": [
@@ -89658,7 +89678,7 @@
     "s": "YouTube Channel",
     "d": "www.youtube.com",
     "t": "ytc",
-    "u": "https://www.youtube.com/user/{{{s}}}",
+    "u": "https://www.youtube.com/results?search_query={{{s}}}&sp=EgIQAg%253D%253D",
     "c": "Entertainment",
     "sc": "Misc"
   },
