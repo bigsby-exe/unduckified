@@ -15350,7 +15350,9 @@
     "s": "Context7",
     "d": "context7.com",
     "t": "context7",
-    "ts": ["ctx7"],
+    "ts": [
+      "ctx7"
+    ],
     "u": "https://context7.com/?q={{{s}}}",
     "c": "Tech",
     "sc": "Libraries/Frameworks"
@@ -19307,13 +19309,13 @@
     ]
   },
   {
-  "s": "Deltarune Wiki",
-  "d": "deltarune.wiki",
-  "t": "deltarune",
-  "u": "https://deltarune.wiki/index.php?search={{{s}}}&title=Special:Search",
-  "c": "Entertainment",
-  "sc": "Games (specific)"
-},
+    "s": "Deltarune Wiki",
+    "d": "deltarune.wiki",
+    "t": "deltarune",
+    "u": "https://deltarune.wiki/index.php?search={{{s}}}&title=Special:Search",
+    "c": "Entertainment",
+    "sc": "Games (specific)"
+  },
   {
     "s": "Dragen en Voeden Forum",
     "d": "forum.dragen-en-voeden.nl",
@@ -21433,9 +21435,9 @@
   },
   {
     "s": "Downdetector",
-    "d": "downdetector.co.uk",
+    "d": "downdetector.com",
     "t": "downd",
-    "u": "https://downdetector.co.uk/search/?q={{{s}}}",
+    "u": "https://downdetector.com/status/{{{s}}}",
     "c": "Online Services",
     "sc": "Tools (URLs)"
   },
@@ -55065,6 +55067,21 @@
     "sc": "Search"
   },
   {
+    "s": "nbarapm.com",
+    "d": "nbarapm.com",
+    "t": "nbarapm",
+    "ts": [
+      "rapm"
+    ],
+    "u": "https://nbarapm.com/player/{{{s}}}",
+    "c": "Entertainment",
+    "sc": "Sports",
+    "fmt": [
+      "open_base_path",
+      "url_encode_placeholder"
+    ]
+  },
+  {
     "s": "Notebookcheck(DE)",
     "d": "www.notebookcheck.com",
     "t": "nbcde",
@@ -68315,13 +68332,13 @@
     "sc": "Games (general)"
   },
   {
-  "s": "RPCS3 Wiki",
-  "d": "wiki.rpcs3.net",
-  "t": "rpcs3",
-  "u": "https://wiki.rpcs3.net/index.php?title=Special%3ASearch&search={{{s}}}",
-  "c": "Research",
-  "sc": "Reference"
-},
+    "s": "RPCS3 Wiki",
+    "d": "wiki.rpcs3.net",
+    "t": "rpcs3",
+    "u": "https://wiki.rpcs3.net/index.php?title=Special%3ASearch&search={{{s}}}",
+    "c": "Research",
+    "sc": "Reference"
+  },
   {
     "s": "StackExchange RPG",
     "d": "rpg.stackexchange.com",
