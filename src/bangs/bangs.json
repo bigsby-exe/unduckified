@@ -84828,6 +84828,17 @@
     "sc": "Games (specific)"
   },
   {
+    "s": "Avakot Wiki",
+    "d": "wiki.avakot.org",
+    "t": "avakotw",
+    "ts": [
+      "wavakot"
+    ],
+    "u": "https://wiki.avakot.org/?search={{{s}}}",
+    "c": "Entertainment",
+    "sc": "Games (specific)"
+  },
+  {
     "s": "Total war Warhammer Wiki",
     "d": "totalwarwarhammer.gamepedia.com",
     "t": "warhammer",
