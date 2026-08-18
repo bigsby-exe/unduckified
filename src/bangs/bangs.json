@@ -13319,6 +13319,9 @@
     "s": "OpenRouter",
     "d": "openrouter.ai",
     "t": "opr",
+    "ts": [
+      "openrouter"
+    ],
     "u": "https://openrouter.ai/models?q={{{s}}}",
     "c": "Online Services",
     "sc": "AI Chatbots"
@@ -44628,6 +44631,14 @@
     "u": "https://kubekings.com/buscar?controller=search&orderby=position&orderway=desc&search_query={{{s}}}&submit_search=",
     "c": "Shopping",
     "sc": "Online"
+  },
+  {
+    "s": "KLIPY",
+    "d": "klipy.com",
+    "t": "klipy",
+    "u": "https://klipy.com/search/{{{s}}}",
+    "c": "Multimedia",
+    "sc": "Images"
   },
   {
     "s": "Konsolentreff.de",
