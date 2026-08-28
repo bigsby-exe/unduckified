@@ -16064,7 +16064,7 @@
     "c": "Entertainment",
     "sc": "Forum"
   },
-  {  
+  {
     "s": "Canadian Public Transit Discussion Board Wiki",
     "d": "cptdb.ca",
     "ad": "cptdb.ca/wiki/index.php/Main_Page",
@@ -18183,9 +18183,6 @@
     "s": "DuckDuckGo Community",
     "d": "duck.co",
     "t": "dc",
-    "ts": [
-      "forum"
-    ],
     "u": "https://duck.co/forum/search?q={{{s}}}",
     "c": "Online Services",
     "sc": "Search (DDG)"
@@ -93535,7 +93532,7 @@
     "u": "https://wiki.resonite.com/index.php?search={{{s}}}",
     "c": "Online Services"
   },
-  {  
+  {
     "s": "Orion Feedback (Discussions)",
     "d": "orionfeedback.org",
     "ad": "orionfeedback.org/d",
