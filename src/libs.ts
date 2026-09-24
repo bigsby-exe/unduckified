@@ -1,4 +1,4 @@
-import { CONSTANTS } from "./main";
+import { CONSTANTS } from "./constants.ts";
 
 const createAudio = (src: string) => {
 	const audio = new Audio();
@@ -7,33 +7,22 @@ const createAudio = (src: string) => {
 };
 
 const storage = {
-	get: (key: string) => localStorage.getItem(key),
-	set: (key: string, value: string) => localStorage.setItem(key, value),
-	remove: (key: string) => localStorage.removeItem(key),
+    get: (key: string): string | null => {
+        try { return localStorage.getItem(key); } catch { return null; }
+    },
+    set: (key: string, value: string) => {
+        try { localStorage.setItem(key, value); } catch { /* Storage may be disabled or full. */ }
+    },
+    remove: (key: string) => {
+        try { localStorage.removeItem(key); } catch { /* Storage may be disabled. */ }
+    },
 };
-
-const memoizedGetSearchHistory = (() => {
-	let cache: Array<{
-		query: string;
-		bang: string;
-		name: string;
-		timestamp: number;
-	}> | null = null;
-	return () => {
-		if (!cache) {
-			cache = JSON.parse(
-				storage.get(CONSTANTS.LOCAL_STORAGE_KEYS.SEARCH_HISTORY) || "[]",
-			);
-		}
-		return cache;
-	};
-})();
 
 function addToSearchHistory(
 	query: string,
 	bang: { bang: string; name: string; url: string },
 ) {
-	const history = memoizedGetSearchHistory();
+	const history = getSearchHistory();
 	if (!history) return;
 
 	history.unshift({
@@ -56,9 +45,12 @@ function getSearchHistory(): Array<{
 	timestamp: number;
 }> {
 	try {
-		return JSON.parse(
-			storage.get(CONSTANTS.LOCAL_STORAGE_KEYS.SEARCH_HISTORY) || "[]",
-		);
+		const value: unknown = JSON.parse(storage.get(CONSTANTS.LOCAL_STORAGE_KEYS.SEARCH_HISTORY) || "[]");
+        if (!Array.isArray(value)) return [];
+        return value.filter((entry) => entry && typeof entry === "object" &&
+            typeof entry.query === "string" && typeof entry.bang === "string" &&
+            typeof entry.name === "string" && typeof entry.timestamp === "number" &&
+            Number.isFinite(entry.timestamp)).slice(0, CONSTANTS.MAX_HISTORY);
 	} catch {
 		return [];
 	}
@@ -71,7 +63,6 @@ function clearSearchHistory() {
 export {
 	createAudio,
 	storage,
-	memoizedGetSearchHistory,
 	addToSearchHistory,
 	getSearchHistory,
 	clearSearchHistory,

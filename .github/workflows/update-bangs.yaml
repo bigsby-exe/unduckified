@@ -3,43 +3,37 @@ on:
   schedule:
     - cron: "0 0 * * *"
   workflow_dispatch:
-
+permissions:
+  contents: read
+concurrency:
+  group: update-bangs
+  cancel-in-progress: false
 jobs:
   fetch-bangs:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
     steps:
-      - uses: actions/checkout@v3
-
-      - name: Install bun
-        uses: oven-sh/setup-bun@v1
-
-      - name: Download bangs.json
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
+        with:
+          bun-version: 1.4.2
+      - run: bun install --frozen-lockfile --ignore-scripts
+      - name: Download and validate bang catalog
         run: |
-          curl -o bangs.json https://raw.githubusercontent.com/kagisearch/bangs/refs/heads/main/data/bangs.json
-
-      - name: Verify file
-        run: |
-          if [ ! -s bangs.json ]; then
-            echo "Downloaded file is empty"
-            exit 1
-          fi
-          if ! jq empty bangs.json; then
-            echo "Downloaded file is not valid JSON"
-            exit 1
-          fi
-
-      - name: Replace bangs.json
-        run: |
-          mkdir -p src
+          curl --fail --silent --show-error --location --proto '=https' --proto-redir '=https' --retry 3 --max-time 120 \
+            https://raw.githubusercontent.com/kagisearch/bangs/refs/heads/main/data/bangs.json -o bangs.json
+          jq -e 'type == "array" and length > 0 and all(.[]; type == "object" and (.t | type == "string" and length > 0) and (.s | type == "string") and (.d | type == "string") and (.u | type == "string"))' bangs.json > /dev/null
           mv bangs.json src/bangs/bangs.json
-
-      - name: 🥔 hash
-        run: bun run hash
-
-      - name: Commit changes
+      - run: bun run hash
+      - run: bun run check
+      - run: bun run build
+      - name: Commit catalog changes
         run: |
+          git add src/bangs/bangs.json src/bangs/hashbang.ts
+          if git diff --cached --quiet; then exit 0; fi
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add src/bangs/bangs.json src/bangs/hashbang.ts
-          git commit -m "chore: update bangs.json" || exit 0
+          git commit -m "chore: update bangs.json"
           git push
