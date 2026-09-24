@@ -14,47 +14,10 @@ import "@fontsource/inter/latin-700.css";
 import "./global.css";
 import notFoundPageRender from "./404.ts";
 
-export const CONSTANTS = {
-	MAX_HISTORY: 500,
-	ANIMATION_DURATION: 375,
-	LOCAL_STORAGE_KEYS: {
-		SEARCH_HISTORY: "search-history",
-		SEARCH_COUNT: "search-count",
-		HISTORY_ENABLED: "history-enabled",
-		DEFAULT_BANG: "default-bang",
-		CUSTOM_BANGS: "custom-bangs",
-	},
-	CUTIES: {
-		NOTFOUND: [
-			"(╯︵╰,)",
-			"(｡•́︿•̀｡)",
-			"(⊙_☉)",
-			"(╯°□°）╯︵ ┻━┻",
-			"(ಥ﹏ಥ)",
-			"(✿◕‿◕✿)",
-			"(╥﹏╥)",
-			"(｡•́︿•̀｡)",
-			"(✧ω✧)",
-			"(•́_•̀)",
-			"(╯°□°）╯︵ ┻━┻",
-		],
-		LEFT: ["╰（°□°╰）", "(◕‿◕´)", "(・ω・´)"],
-		RIGHT: ["(╯°□°）╯", "(｀◕‿◕)", "(｀・ω・)"],
-		UP: ["(↑°□°)↑", "(´◕‿◕)↑", "↑(´・ω・)↑"],
-		DOWN: ["(↓°□°)↓", "(´◕‿◕)↓", "↓(´・ω・)↓"],
-	},
-};
-const customBangs: {
-	[key: string]: {
-		c?: string;
-		d: string;
-		r: number;
-		s: string;
-		sc?: string;
-		t: string;
-		u: string;
-	};
-} = JSON.parse(localStorage.getItem("custom-bangs") || "{}");
+import { CONSTANTS } from "./constants.ts";
+import { escapeHtml, readCustomBangs, safeHttpUrl } from "./security.ts";
+import { findBang, resolveSearch } from "./search.ts";
+const customBangs = readCustomBangs(storage.get("custom-bangs"));
 
 function getFocusableElements(
 	root: HTMLElement = document.body,
@@ -91,7 +54,7 @@ const createTemplate = (data: {
 	<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh;">
 		<header style="position: absolute; top: 1rem; width: 100%;">
 			<div style="display: flex; justify-content: space-between; padding: 0 1rem;">
-				<span>${data.searchCount} ${data.searchCount === "1" ? "search" : "searches"}</span>
+				<span>${escapeHtml(data.searchCount)} ${data.searchCount === "1" ? "search" : "searches"}</span>
 				<button class="settings-button">
 					<img src="/gear.svg" alt="Settings" class="settings" />
 				</button>
@@ -99,7 +62,7 @@ const createTemplate = (data: {
 		</header>
 		<div class="content-container">
 			<h1 id="cutie">┐( ˘_˘ )┌</h1>
-			<p>DuckDuckGo's bang redirects are too slow. Add the following URL as a custom search engine to your browser. Enables <a href="https://duckduckgo.com/bang.html" target="_blank">all of DuckDuckGo's bangs.</a></p>
+			<p>Add the following URL as a custom search engine to your browser for client-side redirects using <a href="https://github.com/kagisearch/bangs" target="_blank" rel="noopener noreferrer">Kagi's bang catalog.</a></p>
 			<div class="url-container">
 				<input
 					type="text"
@@ -123,7 +86,7 @@ const createTemplate = (data: {
 											.map(
 												(search) => `
 													<div style="padding: 8px; border-bottom: 1px solid var(--border-color);">
-														<a href="?q=!${search.bang} ${search.query}">${search.name}: ${search.query}</a>
+														<a href="?${escapeHtml(new URLSearchParams({ q: `!${search.bang} ${search.query}` }).toString())}">${escapeHtml(search.name)}: ${escapeHtml(search.query)}</a>
 														<span style="float: right; color: var(--text-color-secondary);">
 															${new Date(search.timestamp).toLocaleString()}
 														</span>
@@ -138,7 +101,7 @@ const createTemplate = (data: {
 				}
 		</div>
 		<footer class="footer">
-			made with ♥ by <a href="https://github.com/taciturnaxolotl" target="_blank">Kieran Klukas</a> as <a href="https://github.com/taciturnaxolotl/unduck" target="_blank">open source</a> software
+			made with ♥ by <a href="https://github.com/taciturnaxolotl" target="_blank" rel="noopener noreferrer">Kieran Klukas</a> as <a href="https://github.com/taciturnaxolotl/unduck" target="_blank" rel="noopener noreferrer">open source</a> software
 		</footer>
 		<div class="modal" id="settings-modal">
 			<div class="modal-content">
@@ -146,11 +109,11 @@ const createTemplate = (data: {
 					<h2>Settings</h2>
 					<div class="settings-section">
 					    <h3>Bangs</h3>
-							<label for="default-bang" id="bang-description">Default Bang: ${bangs[data.LS_DEFAULT_BANG].s || "Unknown bang"}</label>
+							<label for="default-bang" id="bang-description">Default Bang: ${escapeHtml(findBang(data.LS_DEFAULT_BANG, customBangs, bangs)?.s ?? "Unknown bang")}</label>
 							<div class="bang-select-container">
-									<input type="text" id="default-bang" class="bang-select" value="${data.LS_DEFAULT_BANG}">
+									<input type="text" id="default-bang" class="bang-select" value="${escapeHtml(data.LS_DEFAULT_BANG)}">
 							</div>
-							<p class="help-text">The best way to add new bangs is by submitting them on <a href="https://duckduckgo.com/newbang" target="_blank">DuckDuckGo</a> but you can also add them below</p>
+							<p class="help-text">The best way to add new bangs is by submitting them on <a href="https://github.com/kagisearch/bangs" target="_blank" rel="noopener noreferrer">Kagi’s bang repository</a> but you can also add them below</p>
 							<div style="margin-top: 16px;">
 								<h4>Add Custom Bang</h4>
 								<div class="custom-bang-inputs">
@@ -165,26 +128,26 @@ const createTemplate = (data: {
 								${
 									Object.keys(customBangs).length > 0
 										? `
-  								<h4>Your Custom Bangs</h4>
-  								<div class="custom-bangs-list">
-  								${Object.entries(customBangs)
+								<h4>Your Custom Bangs</h4>
+								<div class="custom-bangs-list">
+								${Object.entries(customBangs)
 										.map(
 											([shortcut, bang]) => `
-  									<div class="custom-bang-item">
-   									<table class="custom-bang-info">
-   											<tr>
-  												<td class="custom-bang-name">${bang.t}</td>
-  												<td class="custom-bang-shortcut"><code>!${shortcut}</code></td>
-  												<td class="custom-bang-base">${bang.d}</td>
-   											</tr>
-   									</table>
-  										<div class="custom-bang-url">${bang.u}</div>
-  										<button class="remove-bang" data-shortcut="${shortcut}">Remove</button>
-  									</div>
-  								`,
+									<div class="custom-bang-item">
+									<table class="custom-bang-info">
+											<tr>
+												<td class="custom-bang-name">${escapeHtml(bang.s)}</td>
+												<td class="custom-bang-shortcut"><code>!${escapeHtml(shortcut)}</code></td>
+												<td class="custom-bang-base">${escapeHtml(bang.d)}</td>
+											</tr>
+									</table>
+										<div class="custom-bang-url">${escapeHtml(bang.u)}</div>
+										<button class="remove-bang" data-shortcut="${escapeHtml(shortcut)}">Remove</button>
+									</div>
+								`,
 										)
 										.join("")}
-  								</div>
+								</div>
 								`
 										: ""
 								}
@@ -416,7 +379,7 @@ function noSearchDefaultPageRender() {
 			/^!+/,
 			"",
 		);
-		const bang = customBangs[newDefaultBang] || bangs[newDefaultBang];
+		const bang = findBang(newDefaultBang, customBangs, bangs);
 
 		if (!bang) {
 			validatedElements.defaultBangSelect.value = LS_DEFAULT_BANG;
@@ -460,15 +423,20 @@ function noSearchDefaultPageRender() {
 		const name = validatedElements.bangName.value.trim();
 		const shortcut = validatedElements.bangShortcut.value
 			.trim()
-			.replace(/^!+/, "");
+			.replace(/^!+/, "").toLowerCase();
 		const searchUrl = validatedElements.bangSearchUrl.value.trim();
 		const baseUrl = validatedElements.bangBaseUrl.value.trim();
 
-		if (!name || !searchUrl || !baseUrl) return;
+		if (!name || !/^[^\s!]+$/.test(shortcut) ||
+            !searchUrl.includes("{{{s}}}") || !safeHttpUrl(searchUrl) ||
+            !safeHttpUrl(baseUrl, true)) {
+            alert("Enter a name, shortcut, HTTP(S) search URL containing {{{s}}}, and a valid base domain.");
+            return;
+        }
 
 		customBangs[shortcut] = {
-			t: name,
-			s: shortcut,
+			t: shortcut,
+			s: name,
 			u: searchUrl,
 			d: baseUrl,
 			r: 0,
@@ -504,18 +472,8 @@ function noSearchDefaultPageRender() {
 	});
 }
 
-const LS_DEFAULT_BANG =
-	storage.get(CONSTANTS.LOCAL_STORAGE_KEYS.DEFAULT_BANG) ?? "ddg";
-const defaultBang = bangs[LS_DEFAULT_BANG];
-
-function ensureProtocol(url: string, defaultProtocol = "https://") {
-	try {
-		const parsedUrl = new URL(url);
-		return parsedUrl.href; // If valid, return as is
-	} catch (e) {
-		return `${defaultProtocol}${url}`;
-	}
-}
+const savedDefault = storage.get(CONSTANTS.LOCAL_STORAGE_KEYS.DEFAULT_BANG) ?? "ddg";
+const LS_DEFAULT_BANG = findBang(savedDefault, customBangs, bangs) ? savedDefault : "ddg";
 
 function getBangredirectUrl() {
 	const url = new URL(window.location.href);
@@ -535,33 +493,16 @@ function getBangredirectUrl() {
 			).toString();
 			storage.set(CONSTANTS.LOCAL_STORAGE_KEYS.SEARCH_COUNT, count);
 
-			const match = query.toLowerCase().match(/^!(\S+)|!(\S+)$/i);
-			const selectedBang = match
-				? customBangs[match[1] || match[2]] || bangs[match[1] || match[2]]
-				: defaultBang;
-			const cleanQuery = match
-				? query.replace(/!\S+\s*|^(\S+!|!\S+)$/i, "").trim()
-				: query;
-
-			// Redirect to base domain if cleanQuery is empty
-			if (!cleanQuery && selectedBang?.d) {
-				return ensureProtocol(selectedBang.d);
-			}
-
-			if (
-				storage.get(CONSTANTS.LOCAL_STORAGE_KEYS.HISTORY_ENABLED) === "true"
-			) {
-				addToSearchHistory(cleanQuery, {
-					bang: selectedBang?.t || "",
-					name: selectedBang?.s || "",
-					url: selectedBang?.u || "",
-				});
-			}
-
-			return selectedBang?.u.replace(
-				"{{{s}}}",
-				encodeURIComponent(cleanQuery).replace(/%2F/g, "/"),
-			);
+            const result = resolveSearch(query, LS_DEFAULT_BANG, customBangs, bangs);
+            if (result && storage.get(CONSTANTS.LOCAL_STORAGE_KEYS.HISTORY_ENABLED) === "true") {
+                addToSearchHistory(result.query, {
+                    bang: result.bang.t,
+                    name: result.bang.s,
+                    url: result.url,
+                });
+            }
+            if (!result) noSearchDefaultPageRender();
+            return result?.url ?? null;
 		}
 		default:
 			notFoundPageRender();

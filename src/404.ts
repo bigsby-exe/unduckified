@@ -1,11 +1,12 @@
+import { escapeHtml } from "./security.ts";
 import { storage } from "./libs";
-import { CONSTANTS } from "./main";
+import { CONSTANTS } from "./constants.ts";
 
 const createTemplate = (data: { searchCount: string }) => `
  <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh;">
   <header style="position: absolute; top: 1rem; width: 100%;">
    <div style="display: flex; justify-content: space-between; padding: 0 1rem;">
-    <span>${data.searchCount} ${data.searchCount === "1" ? "search" : "searches"}</span>
+    <span>${escapeHtml(data.searchCount)} ${data.searchCount === "1" ? "search" : "searches"}</span>
    </div>
   </header>
   <div class="content-container">

@@ -2,17 +2,9 @@ import rawBangs from "./bangs.json" with { type: "json" };
 
 // Developer script that converts ./bang.ts' array to hashmap.
 
-const hashbang: {
-	[key: string]: {
-		c?: string;
-		d: string;
-		r: number;
-		s: string;
-		sc?: string;
-		t: string;
-		u: string;
-	};
-} = {
+import type { Bang } from "../security.ts";
+
+const hashbang: Record<string, Bang> = {
 	p: {
 		c: "AI",
 		d: "https://perplexica.home.ecorp.dev",
@@ -41,9 +33,19 @@ const hashbang: {
 		u: "https://ai.ecorp.dev/?q={{{s}}}",
 	},
 };
-for (const bang of rawBangs) hashbang[bang.t] = bang;
+if (!Array.isArray(rawBangs) || rawBangs.length === 0) throw new Error("Empty or invalid bang catalog");
+const combined = Object.create(null) as typeof hashbang;
+for (const bang of rawBangs) {
+    if (!bang || typeof bang.t !== "string" || !bang.t ||
+        typeof bang.s !== "string" || typeof bang.d !== "string" || typeof bang.u !== "string") {
+        throw new Error("Invalid bang entry");
+    }
+    combined[bang.t] = { t: bang.t, s: bang.s, d: bang.d, u: bang.u };
+}
+// Keep this fork's explicit overrides when upstream defines the same shortcut.
+Object.assign(combined, hashbang);
 
-Bun.write(
+await Bun.write(
 	"./src/bangs/hashbang.ts",
-	`export const bangs: {[key: string]: ({c?:string, d: string, r: number, s:string, sc?: string, t: string, u: string })} = ${JSON.stringify(hashbang)};`,
+    `import type { Bang } from "../security.ts";\nexport const bangs: Record<string, Bang> = JSON.parse(${JSON.stringify(JSON.stringify(combined))});\n`,
 );

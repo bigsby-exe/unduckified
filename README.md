@@ -1,41 +1,63 @@
 # Unduckified
 
-![dark and light modes of the app](https://raw.githubusercontent.com/taciturnaxolotl/unduckified/main/.github/images/both.webp)
+![dark and light modes of the app](./.github/images/both.webp)
 
 > This is a fork of [t3dotgg/unduck](https://github.com/t3dotgg/unduck). Check out Theo's hosted version at [unduck.link](https://unduck.link) for the original experience.
 
 ## Quick Start
 
-Add this URL as a custom search engine to your browser to use DuckDuckGo's bangs, but faster:
+Deploy this fork, open its home page, and copy the search-engine URL shown there. The format is:
 ```
-https://s.dunkirk.sh?q=%s
+https://YOUR-DEPLOYMENT.example/?q=%s
 ```
 
 ## How is it that much faster?
 
-DuckDuckGo does their redirects server side. Their DNS is...not always great. Result is that it often takes ages.
+The app resolves bangs in your browser, avoiding a separate redirect service request. Its service worker caches application assets after the first visit and fetches updates when available. Performance depends on your network, browser cache, and destination; caching is not permanent.
 
-I solved this by doing all of the work client side. Once you've went to https://s.dunkirk.sh once, the JS is all cached and will never need to be downloaded again. Your device does the redirects, not me or any other server.
+## Development and deployment
+
+Use Bun 1.4.2 and a supported Node.js LTS release (Node 22 or 24).
+
+```sh
+bun install --frozen-lockfile --ignore-scripts
+bun run check
+bun run hash
+bun run build
+bun run dev
+```
+
+Deploy `dist/` to an HTTPS static host with an SPA fallback to `index.html`. Before deployment, replace the upstream URL in `public/opensearch.xml` with your own HTTPS origin. That file is deployment-specific; the home-page copy button already uses the current origin. Do not expose Vite's development or preview server as a production server.
+
+The catalog comes from [Kagi](https://github.com/kagisearch/bangs), rather than an exact copy of DuckDuckGo's catalog. Relative `/search?` entries resolve on `kagi.com` and may require a Kagi account. `!gh query`, `gh! query`, and `query !gh` are supported. Unknown bangs search the full original query with the configured default engine; a deleted default falls back to DuckDuckGo.
+
+The generator preserves this fork's explicit `p`, `se`, and `ai` overrides. These point to the owner's services and are not guaranteed to be reachable for other users. Edit them in `src/bangs/hashbanggen.ts`, then run `bun run hash` to change them.
+
+## Privacy and maintenance
+
+History is opt-in, limited to 500 entries, and stored only in this browser. Queries still appear in the address bar/browser history, can reach the static host as query strings, and are sent to the selected search destination. Do not treat this as an anonymous search service. The app suppresses referrer headers and rejects non-HTTP(S) redirects; destination sites retain their own privacy and security policies.
+
+The daily workflow validates downloaded JSON, generates the catalog, runs tests and a production build, and commits only changed catalog files. CI checks the lockfile, generated data, tests, build, and dependency advisories. Dependabot proposes weekly Bun and GitHub Actions updates. Vite stays on the security-supported 6.4 line to avoid an unnecessary major migration.
 
 ## How is this different from Theo's version again?
 
 This is primarily my personal fork to experiment with PWAs but I do have a few ideas that I would love to add to this.
 
-<img align="right" width="140" height="140" src="https://raw.githubusercontent.com/taciturnaxolotl/unduckified/main/public/goose.gif" alt="goose walking animation"/>
+<img align="right" width="140" height="140" src="./public/goose.gif" alt="goose walking animation"/>
 
 - [x] Bangs
 - [x] Dark Mode
 - [x] Settings (for things like disabling search history and changing default bang)
 - [x] Search counter
 - [x] [OpenSearch](https://developer.mozilla.org/en-US/docs/Web/XML/Guides/OpenSearch) support
-- [x] Search History (clearable, all local, and disabled by default ofc)
-- [x] Fancy sounds (disabled if you have `prefers-reduced-motion` set; sounds only account for `198.5 KB` of the `717.4 KB` total size)
+- [x] Search History (clearable, stored locally, and disabled by default)
+- [x] Sounds (disabled if you have `prefers-reduced-motion` set)
 - [x] Cute little text animations
-- [x] Auto updating bangs file! (I'm using a [GitHub Action](https://github.com/taciturnaxolotl/unduckified/actions/workflows/update-bangs.yaml) to update the bangs file every 24 hours)
+- [x] Auto updating bangs file! (I'm using a [GitHub Action](https://github.com/bigsby-exe/unduckified/actions/workflows/update-bangs.yaml) to update the bangs file every 24 hours)
 - [x] Hashmapped bangs for faster searching
 - [x] local font file to avoid google fonts
 - [x] redirects to the base page of a bang if there is no query (e.g. `!g` will take you to google.com and `!yt` will take you to youtube.com)
-- [x] Suffix bangs (e.g. `ghr! taciturnaxolotl/unduckified` will take you to this github repo)
+- [x] Suffix bangs (e.g. `ghr! bigsby-exe/unduckified` will take you to this github repo)
 - [x] Quick settings (e.g. `!settings` or `!` will take you to the settings page)
 - [x] Custom local bangs! (thanks to [@ayoubabedrabbo@mastodon.social](https://mastodon.social/@ayoubabedrabbo/114114311682366314) for the suggestion)
 - [x] Kagi bangs! We are able to grab the bangs from [kagisearch/bangs](https://github.com/kagisearch/bangs/) and Kagi is far more responsive than DuckDuckGo when it comes to updating their bangs.
@@ -46,7 +68,7 @@ I would love to add these but they don't seem possible / feasible at the moment:
 
 ## Fancy smancy technical graphs 😮
 
-The total size of the app is `717.4 KB` (one time download)
+The following measurements are historical upstream examples, not current performance guarantees. Use `bun run build` and browser network tools to measure your deployment.
 
 ### Resource Breakdown
 
@@ -107,15 +129,15 @@ gantt
 
 ### Light Mode
 
-![Light Mode](https://raw.githubusercontent.com/taciturnaxolotl/unduckified/main/.github/images/light.webp)
-![Light Mode with Search History](https://raw.githubusercontent.com/taciturnaxolotl/unduckified/main/.github/images/light-history.webp)
-![Light Mode 404](https://raw.githubusercontent.com/taciturnaxolotl/unduckified/main/.github/images/light-404.webp)
+![Light Mode](./.github/images/light.webp)
+![Light Mode with Search History](./.github/images/light-history.webp)
+![Light Mode 404](./.github/images/light-404.webp)
 
 ### Dark Mode 💪
 
-![Dark Mode](https://raw.githubusercontent.com/taciturnaxolotl/unduckified/main/.github/images/dark.webp)
-![Dark Mode with Search History](https://raw.githubusercontent.com/taciturnaxolotl/unduckified/main/.github/images/dark-history.webp)
-![Dark Mode 404](https://raw.githubusercontent.com/taciturnaxolotl/unduckified/main/.github/images/dark-404.webp)
+![Dark Mode](./.github/images/dark.webp)
+![Dark Mode with Search History](./.github/images/dark-history.webp)
+![Dark Mode 404](./.github/images/dark-404.webp)
 
 </details>
 
@@ -128,5 +150,5 @@ gantt
 </p>
 
 <p align="center">
-	<a href="https://github.com/taciturnaxolotl/unduckified/blob/main/LICENSE.md"><img src="https://img.shields.io/static/v1.svg?style=for-the-badge&label=License&message=MIT&logoColor=d9e0ee&colorA=363a4f&colorB=b7bdf8"/></a>
+	<a href="./LICENSE.md"><img src="https://img.shields.io/static/v1.svg?style=for-the-badge&label=License&message=MIT&logoColor=d9e0ee&colorA=363a4f&colorB=b7bdf8"/></a>
 </p>
