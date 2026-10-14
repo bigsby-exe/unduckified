@@ -19082,6 +19082,19 @@
     "sc": "Academic"
   },
   {
+    "s": "DeepWiki",
+    "d": "kagi.com",
+    "ad": "deepwiki.com",
+    "t": "deepwiki",
+    "ts": [
+      "deepw",
+      "dwi"
+    ],
+    "u": "/search?q={{{s}}}+site:deepwiki.com",
+    "c": "Tech",
+    "sc": "Programming"
+  },
+  {
     "s": "Dict.cc Deutsch-Spanisch",
     "d": "dees.dict.cc",
     "t": "dees",
@@ -30192,6 +30205,19 @@
     "u": "https://fortranwiki.org/fortran/search?query={{{s}}}",
     "c": "Tech",
     "sc": "Languages (other)"
+  },
+  {
+    "s": "Wowhead Forever",
+    "d": "forever.wowhead.com",
+    "t": "fwow",
+    "ts": [
+      "whf",
+      "wowforever",
+      "wowhf"
+    ],
+    "u": "https://forever.wowhead.com/search?q={{{s}}}",
+    "c": "Entertainment",
+    "sc": "Games (WOW)"
   },
   {
     "s": "Frugalware packages",
