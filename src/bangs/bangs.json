@@ -25128,7 +25128,7 @@
     "sc": "Online (marketplace)"
   },
   {
-    "s": "English WIkinews",
+    "s": "English Wikinews",
     "d": "en.wikinews.org",
     "t": "enwn",
     "u": "https://en.wikinews.org/w/index.php?search={{{s}}}",
@@ -26776,6 +26776,14 @@
     "u": "https://www.filmaffinity.com/es/advsearch2.php?q={{{s}}}:",
     "c": "Entertainment",
     "sc": "Movies"
+  },
+  {
+    "s": "Find Case Law (National Archives)",
+    "d": "caselaw.nationalarchives.gov.uk",
+    "t": "fcl",
+    "u": "https://caselaw.nationalarchives.gov.uk/search?query={{{s}}}",
+    "c": "Research",
+    "sc": "Law"
   },
   {
     "s": "Font Awesome",
@@ -40011,6 +40019,14 @@
     "u": "https://identi.ca/search/people?q={{{s}}}&search=Search",
     "c": "Online Services",
     "sc": "Social"
+  },
+  {
+    "s": "Île-de-France Mobilités",
+    "d": "www.iledefrance-mobilites.fr",
+    "t": "idfm",
+    "u": "https://www.iledefrance-mobilites.fr/#{{{s}}}",
+    "c": "Research",
+    "sc": "Travel"
   },
   {
     "s": "Idealo France",
