@@ -11225,6 +11225,21 @@
     "sc": "Big box/department"
   },
   {
+    "s": "Bunpro",
+    "d": "bunpro.jp",
+    "t": "bunpro",
+    "ts": [
+      "文プロ"
+    ],
+    "u": "https://bunpro.jp/search?query={{{s}}}",
+    "c": "Research",
+    "sc": "Learning",
+    "fmt": [
+      "url_encode_placeholder",
+      "url_encode_space_to_plus"
+    ]
+  },
+  {
     "s": "bunq Together",
     "d": "together.bunq.com",
     "t": "bunq",
@@ -13375,7 +13390,11 @@
     ],
     "u": "https://www.google.com/search?q={{{s}}}&udm=50",
     "c": "Online Services",
-    "sc": "AI Chatbots"
+    "sc": "AI Chatbots",
+    "fmt": [
+      "url_encode_placeholder",
+      "url_encode_space_to_plus"
+    ]
   },
   {
     "s": "Chatters Salons",
@@ -43211,6 +43230,9 @@
     "s": "Japan Dict",
     "d": "www.japandict.com",
     "t": "jpd",
+    "ts": [
+      "japandict"
+    ],
     "u": "https://www.japandict.com/?s={{{s}}}",
     "c": "Online Services",
     "sc": "Tools"
@@ -49836,7 +49858,8 @@
     "s": "Mankier",
     "d": "www.mankier.com",
     "t": "mankier",
-    "u": "https://www.mankier.com/?q={{{s}}}",
+    "u": "https://www.mankier.com/?q=$2&sections=$1",
+    "x": "^(?:(\\d\\w*)\\s+)?(.+)$",
     "c": "Tech",
     "sc": "Sysadmin (man)"
   },
